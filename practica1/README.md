@@ -19,3 +19,7 @@ El analizador debe devolver el **tipo de token** según la tabla indicada por el
 ## Ejemplos de prueba
 - `int x = 10;` → tokens: tipo, identificador, =, entero, ;
 - `a+b*c` → identificador, +, identificador, *, identificador
+
+Ejemplo de ejecución:
+
+![Salida de prueba](practica1Lexico.png)
