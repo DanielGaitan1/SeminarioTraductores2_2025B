@@ -18,3 +18,5 @@ En esta práctica se implementa un **analizador sintáctico LR(1)** usando una p
 ## Notas
 - Se utilizan los mismos índices de tokens que en la práctica 1.
 - Esta práctica prepara el terreno para la migración a objetos (Práctica 3).
+
+![Salida de prueba](ejemplo123.png)
