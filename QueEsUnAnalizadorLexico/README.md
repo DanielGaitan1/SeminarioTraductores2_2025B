@@ -1,4 +1,5 @@
-# Etapa del Proyecto: Analizador Léxico Completo
+## Daniel Gaitan 219294005
+
 
 ## Introducción
 El analizador léxico es la primera fase de un compilador o intérprete. Su papel es fundamental: recibe el código fuente como texto plano y lo transforma en una secuencia de **tokens**, que son unidades con significado dentro del lenguaje de programación. Gracias a este proceso, el analizador sintáctico puede trabajar con estructuras de más alto nivel sin preocuparse por los detalles de los caracteres individuales.
