@@ -1,6 +1,7 @@
 #include "pila.h"
 #include "lexico.h"
 #include <sstream>
+#include "arbolSintactico.h"
 
 //***********************************************************************************************************************
 //  Elemento Pila
@@ -25,7 +26,7 @@ ostream &operator << (ostream &salida, ElementoPila &elementoPila){
 
 Terminal::Terminal(int id):ElementoPila(){
 	this->id= id;
-	if (id == TipoSimbolo::PESOS ) 
+	if (id == TipoSimbolo::PESOS )
  	   simbolo= "$";
 }
 
@@ -48,29 +49,29 @@ NoTerminal::NoTerminal(int tipo, string simbolo):ElementoPila(){
   void Pila::push( ElementoPila* x){
        lista.push_front(x);
   }
-       
+
  ElementoPila * Pila::pop(){
 
      ElementoPila *elemento= *lista.begin();
      lista.erase ( lista.begin() );
-     
+
      return elemento;
   }
 
    ElementoPila * Pila::top(){
-     return *lista.begin();     
+     return *lista.begin();
   }
-  
+
   void Pila::muestra(){
 
 //     typename list <ElementoPila*>::reverse_iterator  it;
      list <ElementoPila*>::reverse_iterator  it;
 
-     cout << "Pila: ";   
-     
+     cout << "Pila: ";
+
      for (it= lista.rbegin(); it != lista.rend(); it++){
-         cout << *(*it) << " ";         
-     } 
-  
+         cout << *(*it) << " ";
+     }
+
      cout << endl;
   }

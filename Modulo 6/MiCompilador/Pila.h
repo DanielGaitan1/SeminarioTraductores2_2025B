@@ -18,7 +18,7 @@ public:
 	int tipo;   //ejem. op multiplicación
 	int subtipo;// ejem. * ó /
 	string simbolo;
-	
+
 	Nodo *nodo;
 
 	ElementoPila();
@@ -26,13 +26,13 @@ public:
 	virtual bool esEstado(){ return false;}
 	virtual bool esTerminal(){ return false;}
 	virtual bool esNoTerminal(){ return false;}
-		
+
     //friend ostream &operator << (ostream &salida, ElementoPila &elementoPila);
-    
+
 };
 
 class Estado: public ElementoPila{
-private:        
+private:
 public:
 	Estado(int id);
 	bool esEstado(){ return true;}
@@ -57,14 +57,15 @@ public:
 
 class Pila{
 
-   private:      
-      list <ElementoPila*> lista;      
-      
-   public:      
+   private:
+      list <ElementoPila*> lista;
+
+   public:
       void push( ElementoPila* x);
       ElementoPila* top();
       ElementoPila* pop();
       void muestra();
+      bool esVacia();
 };
 
 

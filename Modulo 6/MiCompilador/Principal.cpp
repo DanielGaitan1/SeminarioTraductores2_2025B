@@ -10,10 +10,10 @@ using namespace std;
 int main(int argc, char *argv[]){
 
     Sintactico sintactico;
-    sintactico.lexico.entrada("a");
+    sintactico.lexico.entrada("int a ; $");
     sintactico.analiza();
-    
-  
+
+
     system("PAUSE");
     return EXIT_SUCCESS;
 }
