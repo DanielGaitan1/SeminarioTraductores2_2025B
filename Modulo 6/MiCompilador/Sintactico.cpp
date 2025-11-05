@@ -40,49 +40,55 @@ void Sintactico::analiza() {
     aceptacion = false;
     pila.push(new Estado(0)); // Empujar estado inicial 0
 
-    // Obtenemos el primer token
-    // (Asegúrate que tu Lexico.cpp devuelva el ID de token correcto)
     int token = lexico.sigSimbolo();
 
     while (true) {
-        // 1. Obtener estado actual (está en el TOPE de la pila)
         Estado* estadoActual = (Estado*)pila.top();
-
-        // 2. Consultar la ACCIÓN en la tablaLR
         int accion = tablaLR[estadoActual->id][token];
 
-        // *******************************************************
-        // ---- ¡PARCHE PARA EL BUG DE LA TABLA LR! ----
-        // En Estado 8, con Token 12 (';'), la tabla dice -8 (r8)
-        // pero debería decir -7 (r7). Lo forzamos a mano.
+        // *** PARCHE 1: BUG del ; ***
         if (estadoActual->id == 8 && token == 12) {
-            accion = -7; // Forzamos la Regla 7 (índice 6)
+            accion = -7;
         }
-        // *******************************************************
 
-        // ---- ¡PARCHE 2: BUG del BUCLE INFINITO $ ----
-        // En Estado 2, con Token 23 ($), la tabla dice -2 (r2),
-        // causando un bucle. Debería ser -1 (r1: programa).
+        // *** PARCHE 2: BUG del BUCLE INFINITO $ ***
         if (estadoActual->id == 2 && token == 23) {
-            accion = -1; // Forzamos la Regla 1 (índice 0)
+            accion = -1;
         }
-        // *******************************************************
 
-        // 3. Imprimir para depuración (opcional pero MUY útil)
         pila.muestra();
         cout << "Token: " << token << " | Accion: ";
         muestraAccion(accion);
 
-        // 4. Tomar decisión
         if (accion > 0) {
-            // --- DESPLAZAMIENTO (SHIFT) ---
-            // Empuja el Terminal (con el ID del token)
-            pila.push(new Terminal(token));
-            // Empuja el nuevo Estado (el número de 'accion')
+            // *******************************************************
+            // ---- ¡SECCIÓN DE DESPLAZAMIENTO (SHIFT) MEJORADA! ----
+            // *******************************************************
+
+            // 1. Crear el Nodo del Árbol (AST)
+            Nodo* nodoAST = NULL; // Por defecto es NULL
+            string buffer = lexico.getBuffer(); // Pedimos el texto ("int", "a")
+
+            // Si es un token que GENERA un nodo (como id o tipo)
+            if (token == 0) { // token 0 es "identificador"
+                nodoAST = new Identificador(buffer);
+            }
+            else if (token == 4) { // token 4 es "tipo"
+                nodoAST = new Tipo(buffer);
+            }
+            // (Aquí puedes añadir 'else if' para ENTERO, REAL, CADENA)
+
+            // 2. Crear el Terminal y "pegarle" el nodo
+            Terminal* term = new Terminal(token);
+            term->nodo = nodoAST; // <-- ¡La magia está aquí!
+
+            // 3. Empujar el Terminal y el nuevo Estado
+            pila.push(term);
             pila.push(new Estado(accion));
 
-            // Pide el siguiente token al léxico
+            // 4. Pedir el siguiente token
             token = lexico.sigSimbolo();
+            // *******************************************************
 
         } else if (accion < 0) {
             // --- REDUCCIÓN (REDUCE) ---
@@ -92,49 +98,47 @@ void Sintactico::analiza() {
                 cout << "¡Analisis sintactico TERMINADO con exito!" << endl;
                 aceptacion = true;
 
-                // Obtenemos el Nodo Raíz (el NoTerminal 'programa')
                 pila.pop(); // Saca el Estado 1
-                NoTerminal* raiz = (NoTerminal*)pila.pop(); // Saca 'programa'
+                NoTerminal* raiz = (NoTerminal*)pila.pop();
                 arbolSintactico = raiz->nodo; // ¡Este es tu AST!
 
                 delete raiz;
-                break; // Termina el bucle
+                break;
             }
 
-            // Es una reducción normal (ej. -2, -3, ...)
-            int indiceRegla = -(accion + 1); // R1 es -2, R2 es -3, etc.
+            // Es una reducción normal
+            int indiceRegla = -(accion + 1);
             InfoRegla regla = infoReglas[indiceRegla];
             int longitud = regla.longitud;
             int idNoTerminal = regla.idNoTerminal;
             string nombreNT = regla.nombre;
 
-            // --- ¡AQUÍ SE CREA EL ÁRBOL! ---
-            // 1. Crear el nodo padre (función helper)
+            // 1. Crear el nodo padre
             Nodo* nodoPadre = crearNodoAST(indiceRegla, longitud);
 
-            // 2. Obtener el estado anterior (ahora está en el tope)
+
+            // 3. Obtener el estado anterior
             Estado* estadoAnterior = (Estado*)pila.top();
 
-            // 3. Consultar la tabla GOTO
+            // 4. Consultar la tabla GOTO
             int nuevoEstadoId = tablaLR[estadoAnterior->id][idNoTerminal];
 
-            // 4. Empujar el NoTerminal (con su Nodo AST)
+            // 5. Empujar el NoTerminal (con su Nodo AST)
             NoTerminal* nt = new NoTerminal(idNoTerminal, nombreNT);
             nt->nodo = nodoPadre; // ¡Adjuntamos el nodo!
             pila.push(nt);
 
-            // 5. Empujar el nuevo Estado (de GOTO)
+            // 6. Empujar el nuevo Estado (de GOTO)
             pila.push(new Estado(nuevoEstadoId));
 
         } else if (accion == 0) {
             // --- ERROR SINTÁCTICO ---
             cout << "ERROR SINTACTICO: Accion 0." << endl;
             cout << "Estado: " << estadoActual->id << ", Token: " << token << endl;
-            break; // Termina el bucle
+            break;
         }
     }
 }
-
 
 // --- FUNCIÓN HELPER PARA CREAR EL AST ---
 // (Aquí es donde necesitamos el otro 'arbolSintactico.h')

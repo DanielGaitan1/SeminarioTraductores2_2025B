@@ -11,6 +11,7 @@
 // o viceversa, para que 'Nodo' y 'Pila' se conozcan.
 // Basado en tus archivos, 'arbolSintactico.h' incluye 'pila.h'
 #include "arbolSintactico.h"
+#include "pila.h"
 
 using namespace std;
 

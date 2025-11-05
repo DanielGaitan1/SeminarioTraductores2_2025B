@@ -1,8 +1,8 @@
-
 #include "arbolSintactico.h"
 
-int Nodo::tamSangria = 0;
+// --- Definición de la variable estática ---
+// (Ahora se llama 'sangria' y no 'tamSangria')
+int Nodo::sangria = 0;
 
-  void Nodo::sangria(){
-       for (int i=0; i< tamSangria; i++) cout << " ";
-  }
+// (El .h nuevo ya define 'muestraSangria()',
+// así que este archivo .cpp queda casi vacío. ¡Está bien!)

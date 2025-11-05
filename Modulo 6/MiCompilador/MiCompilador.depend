@@ -1,20 +1,21 @@
 # depslib dependency file v1.0
-1762235179 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\arbolsintactico.cpp
+1762326486 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\arbolsintactico.cpp
 	"arbolSintactico.h"
 
-1762224865 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\arbolsintactico.h
+1762326638 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\arbolsintactico.h
+	<string>
 	<iostream>
-	"pila.h"
+	"tablaSimbolos.h"
 
 1762234828 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\pila.h
 	<list>
 	<iostream>
 	<string>
 
-1762235884 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\lexico.cpp
+1762327609 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\lexico.cpp
 	"lexico.h"
 
-1762233986 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\lexico.h
+1762327589 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\lexico.h
 	<iostream>
 	<string>
 	<map>
@@ -34,14 +35,24 @@
 	"lexico.h"
 	"sintactico.h"
 
-1762235103 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\sintactico.h
+1762326785 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\sintactico.h
 	<vector>
 	<fstream>
 	<iostream>
 	<string>
 	"lexico.h"
 	"arbolSintactico.h"
+	"pila.h"
 
 1762236877 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\sintactico.cpp
 	"sintactico.h"
+
+1762324603 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\tablasimbolos.h
+	<list>
+	<iostream>
+	<string>
+
+1762324608 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\tablasimbolos.cpp
+	"tablaSimbolos.h"
+	"arbolSintactico.h"
 
