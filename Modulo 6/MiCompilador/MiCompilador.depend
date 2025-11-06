@@ -2,7 +2,7 @@
 1762326486 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\arbolsintactico.cpp
 	"arbolSintactico.h"
 
-1762326638 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\arbolsintactico.h
+1762464982 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\arbolsintactico.h
 	<string>
 	<iostream>
 	"tablaSimbolos.h"
@@ -15,7 +15,7 @@
 1762327609 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\lexico.cpp
 	"lexico.h"
 
-1762327589 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\lexico.h
+1762463906 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\lexico.h
 	<iostream>
 	<string>
 	<map>
@@ -28,12 +28,13 @@
 	<sstream>
 	"arbolSintactico.h"
 
-1762235919 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\principal.cpp
+1762462965 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\principal.cpp
 	<cstdlib>
 	<iostream>
 	"pila.h"
 	"lexico.h"
 	"sintactico.h"
+	"semantico.h"
 
 1762326785 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\sintactico.h
 	<vector>
@@ -44,7 +45,7 @@
 	"arbolSintactico.h"
 	"pila.h"
 
-1762460900 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\sintactico.cpp
+1762461498 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\sintactico.cpp
 	"sintactico.h"
 
 1762324603 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\tablasimbolos.h
@@ -55,4 +56,13 @@
 1762324608 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\tablasimbolos.cpp
 	"tablaSimbolos.h"
 	"arbolSintactico.h"
+
+1762462304 c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\semantico.h
+	<list>
+	<string>
+	"arbolSintactico.h"
+	"tablaSimbolos.h"
+
+1762463493 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\semantico.cpp
+	"semantico.h"
 

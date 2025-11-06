@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <map>
+#include <map>        // <-- ¡ESTE FALTABA!
 #include <fstream>
 #include <sstream>
 
@@ -33,8 +33,7 @@ public:
     int sigSimbolo();
     bool terminado();
 
-    // --- NUEVA FUNCIÓN "GETTER" ---
-    string getBuffer(); // Para que el Sintáctico pida el texto
+    string getBuffer();
 
 private:
     // --- Miembros del profesor ---
@@ -43,8 +42,8 @@ private:
 
     // --- NUESTRAS ADICIONES ---
     bool continua;
-    std::map<std::string, int> tablaSimbolos;
-    string buffer; // <-- NUEVA VARIABLE para guardar el texto
+    std::map<std::string, int> tablaSimbolos; // <-- ¡ESTE NECESITA <map> y <string>!
+    string buffer;
 };
 
 #endif

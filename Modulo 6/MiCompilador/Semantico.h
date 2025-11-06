@@ -1,32 +1,37 @@
-#ifndef _SEMANTICO
-#define _SEMANTICO
+#ifndef SEMANTICO_H
+#define SEMANTICO_H
+
+#include <list>
+#include <string>
 #include "arbolSintactico.h"
-#include "tablaSimbolos.h"
+#include "tablaSimbolos.h" // Se necesita para la Tabla
 
-class Semantico{
-protected:
-		list <string> listaErrores;
-		Nodo *arbol;
+using namespace std;
+
+class Semantico {
 public:
+    Nodo* arbol;
+    list<string> listaErrores; // Lista para guardar errores
 
+    // --- Atributo pedido por el PDF ---
+    TablaSimbolos *tablaSimbolos;
 
-	void muestraErrores(){
-		if (listaErrores.size() == 0) return;
+    // --- Métodos pedidos por el PDF ---
+    Semantico(); // Constructor
 
-		list<string>::iterator it;
-		string cad;
-		cout << endl << "Errores Semanticos" << endl << endl;
-		for (it= listaErrores.begin(); it != listaErrores.end(); it++){
-			cad= *it;
-			cout << cad << endl;
-		}
+    void analiza(Nodo *arbol);
 
-	}
-
-	bool existenErrores(){
-		return listaErrores.size() > 0;
-	}
-
+    // (Helper para mostrar errores)
+    void muestraErrores() {
+        if (listaErrores.empty()) {
+            cout << "------ ANALISIS SEMANTICO: Sin errores ------" << endl;
+        } else {
+            cout << "------ ERRORES SEMANTICOS ------" << endl;
+            for (list<string>::iterator it = listaErrores.begin(); it != listaErrores.end(); ++it) {
+                cout << *it << endl;
+            }
+        }
+    }
 };
 
 #endif
