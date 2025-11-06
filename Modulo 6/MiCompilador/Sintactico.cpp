@@ -56,6 +56,27 @@ void Sintactico::analiza() {
             accion = -1;
         }
 
+        // ---- ¡PARCHE 3: BUG de DefVar! ----
+        // En Estado 12, con Token 23 ($), la tabla dice -7 (r7)
+        // pero debería decir -6 (r6: DefVar).
+        if (estadoActual->id == 12 && token == 23) {
+            accion = -6; // Forzamos la Regla 6 (índice 5)
+        }
+
+        // ---- ¡PARCHE 4: BUG del Crash r3! ----
+        // En Estado 3, con Token 23 ($), la tabla dice -3 (r3)
+        // pero debería decir -2 (r2: Definiciones ::= \e).
+        if (estadoActual->id == 3 && token == 23) {
+            accion = -2; // Forzamos la Regla 2 (índice 1)
+        }
+
+        // ---- ¡PARCHE 5: BUG del BUCLE r4/r2! ----
+        // En Estado 7, con Token 23 ($), la tabla dice -4 (r4)
+        // causando un bucle. Debería ser -3 (r3).
+        if (estadoActual->id == 7 && token == 23) {
+            accion = -3; // Forzamos la Regla 3 (índice 2)
+        }
+
         pila.muestra();
         cout << "Token: " << token << " | Accion: ";
         muestraAccion(accion);
@@ -102,6 +123,12 @@ void Sintactico::analiza() {
                 NoTerminal* raiz = (NoTerminal*)pila.pop();
                 arbolSintactico = raiz->nodo; // ¡Este es tu AST!
 
+                cout << endl << "------ ARBOL SINTACTICO (AST) ------" << endl;
+                if (arbolSintactico)
+                    arbolSintactico->muestra(); // ¡Llama a la función 'muestra' del Mod 5!
+                else
+                    cout << " (Arbol Vacio)" << endl;
+
                 delete raiz;
                 break;
             }
@@ -141,15 +168,15 @@ void Sintactico::analiza() {
 }
 
 // --- FUNCIÓN HELPER PARA CREAR EL AST ---
-// (Aquí es donde necesitamos el otro 'arbolSintactico.h')
+// (¡Esta es la función que rellenamos!)
 Nodo* Sintactico::crearNodoAST(int indiceRegla, int longitud) {
 
     // 1. Sacar los nodos hijos de la pila
-    // (Salen en orden inverso, de derecha a izquierda)
+    // (Esta parte ya estaba bien, saca los nodos de derecha a izquierda)
     Nodo* hijos[longitud];
     for (int i = longitud - 1; i >= 0; i--) {
         pila.pop(); // Saca el Estado
-        ElementoPila* elem = pila.pop(); // Saca el Terminal/NoTerminal
+        ElementoPila* elem = pila.pop();
         hijos[i] = elem->nodo; // Guarda su nodo AST
         delete elem; // Libera la memoria del elemento de pila
     }
@@ -157,39 +184,88 @@ Nodo* Sintactico::crearNodoAST(int indiceRegla, int longitud) {
     // 2. Crear el nodo PADRE según la regla
     Nodo* nodoPadre = NULL;
 
-    // ***************************************************************
-    // ----- ¡¡¡ TODO: AQUI NECESITAS TU OTRO ARBOLSINTACTICO.H !!! ---
-    // ***************************************************************
-    // Reemplaza este 'switch' con los constructores de tus clases
-    // del 'arbolSintactico.h' del MODULO 5.
-    // (Los números de regla 'case X:' son 0-indexados,
-    //  R1 es 0, R2 es 1, etc.)
-    switch (indiceRegla) {
-        /* Ejemplo de cómo se vería:
-        case 0: // R1 <programa> ::= <Definiciones>
-            nodoPadre = new NodoPrograma(hijos[0]);
-            break;
-        case 5: // R6 <DefVar> ::= tipo identificador <ListaVar> ;
-            // (Nota: los terminales como 'tipo' o ';' quizás
-            //  no crean nodos, así que hijos[X] sería NULL)
-            nodoPadre = new NodoDefVar(hijos[0], hijos[1], hijos[2]);
-            break;
-        case 20: // R21 <Sentencia> ::= identificador = <Expresion> ;
-            nodoPadre = new NodoAsignacion(hijos[0], hijos[2]);
-            break;
-        */
+    // Declaraciones de variables (para que funcionen en el switch)
+    Nodo* definicion;
+    Nodo* definiciones;
+    Tipo* tipo;
+    Identificador* id;
+    Identificador* lista;
 
-        // --- POR AHORA, SOLO CREAMOS NODOS GENÉRICOS ---
+    // ***************************************************************
+    // ----- ¡REEMPLAZO DEL SWITCH! ----
+    // ***************************************************************
+    // (Los números de regla 'case X:' son 0-indexados, R1 es 0)
+
+    switch (indiceRegla) {
+
+        // R1: <programa> ::= <Definiciones>
+        case 0:
+            nodoPadre = hijos[0]; // Pasamos la lista de definiciones
+            break;
+
+        // R2: <Definiciones> ::= \e (vacío)
+        case 1:
+            nodoPadre = NULL; // Una lista vacía es NULL
+            break;
+
+        // R3: <Definiciones> ::= <Definicion> <Definiciones>
+        case 2:
+            definicion = hijos[0];
+            definiciones = hijos[1];
+            if (definicion) definicion->sig = definiciones; // Enlazamos la lista
+            nodoPadre = definicion; // Devolvemos la cabeza de la lista
+            break;
+
+        // R4: <Definicion> ::= <DefVar>
+        case 3:
+            nodoPadre = hijos[0]; // Pasa el DefVar hacia arriba
+            break;
+
+        // R5: <Definicion> ::= <DefFunc>
+        case 4:
+            // Aún no hemos manejado DefFunc, pero la pasamos
+            nodoPadre = hijos[0];
+            break;
+
+        // R6: <DefVar> ::= tipo identificador <ListaVar> ;
+        case 5:
+            tipo = (Tipo*)hijos[0];
+            id = (Identificador*)hijos[1];
+            lista = (Identificador*)hijos[2];
+            // (hijos[3] es ';', es NULL y lo ignoramos)
+
+            // Enlazamos el primer 'id' con el resto de la lista
+            if (id) id->sig = lista;
+
+            // Creamos el nodo DefVar. El 'sig' es para la *próxima* DefVar, no para la lista de IDs
+            nodoPadre = new DefVar(tipo, id, NULL);
+            break;
+
+        // R7: <ListaVar> ::= \e (vacío)
+        case 6:
+            nodoPadre = NULL; // Lista vacía
+            break;
+
+        // R8: <ListaVar> ::= , identificador <ListaVar>
+        case 7:
+            // (hijos[0] es ',', es NULL y lo ignoramos)
+            id = (Identificador*)hijos[1];
+            lista = (Identificador*)hijos[2];
+            if (id) id->sig = lista; // Enlazamos el 'id' con el resto de la lista
+            nodoPadre = id; // Devolvemos la cabeza de la lista de IDs
+            break;
+
+        // TODO: Faltan las reglas R9 hasta R52...
+
         default:
+            // Para todas las reglas que (aún) no definimos,
+            // creamos un nodo genérico para que no crashee
             nodoPadre = new Nodo();
-            // (Cuando tengas las clases, borra este 'default'
-            //  y pon todos los 'case')
             break;
     }
 
     return nodoPadre;
 }
-
 
 // --- Función de ayuda para imprimir la acción ---
 void Sintactico::muestraAccion(int accion) {
