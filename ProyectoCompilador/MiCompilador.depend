@@ -66,3 +66,70 @@
 1762463493 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\semantico.cpp
 	"semantico.h"
 
+1762326486 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\arbolsintactico.cpp
+	"arbolSintactico.h"
+
+1762464982 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\arbolsintactico.h
+	<string>
+	<iostream>
+	"tablaSimbolos.h"
+
+1762324603 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\tablasimbolos.h
+	<list>
+	<iostream>
+	<string>
+
+1762798765 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\lexico.cpp
+	"lexico.h"
+
+1762463906 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\lexico.h
+	<iostream>
+	<string>
+	<map>
+	<fstream>
+	<sstream>
+
+1762233639 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\pila.cpp
+	"pila.h"
+	"lexico.h"
+	<sstream>
+	"arbolSintactico.h"
+
+1762234828 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\pila.h
+	<list>
+	<iostream>
+	<string>
+
+1762462965 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\principal.cpp
+	<cstdlib>
+	<iostream>
+	"pila.h"
+	"lexico.h"
+	"sintactico.h"
+	"semantico.h"
+
+1762795297 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\sintactico.h
+	<vector>
+	<fstream>
+	<iostream>
+	<string>
+	"lexico.h"
+	"arbolSintactico.h"
+	"pila.h"
+
+1762462304 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\semantico.h
+	<list>
+	<string>
+	"arbolSintactico.h"
+	"tablaSimbolos.h"
+
+1762463493 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\semantico.cpp
+	"semantico.h"
+
+1762798743 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\sintactico.cpp
+	"sintactico.h"
+
+1762463961 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\tablasimbolos.cpp
+	"tablaSimbolos.h"
+	"arbolSintactico.h"
+

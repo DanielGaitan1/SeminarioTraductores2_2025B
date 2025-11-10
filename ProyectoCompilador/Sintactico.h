@@ -7,9 +7,6 @@
 #include <string>
 
 #include "lexico.h"
-// OJO: Asegúrate que 'arbolSintactico.h' incluya 'pila.h'
-// o viceversa, para que 'Nodo' y 'Pila' se conozcan.
-// Basado en tus archivos, 'arbolSintactico.h' incluye 'pila.h'
 #include "arbolSintactico.h"
 #include "pila.h"
 

@@ -5,9 +5,9 @@ Sintactico::Sintactico() {
     // ... (Tu código de cargar tabla LR y símbolos se queda aquí) ...
     // ... (No lo pego de nuevo para no hacer bulto, pero DEBE estar aquí) ...
 
-    std::ifstream archivoLR("compilador.lr");
+    std::ifstream archivoLR("Gramatica/compilador.lr");
     if (!archivoLR.is_open()) {
-        cout << "ERROR: No se pudo abrir 'compilador.lr'" << endl; system("PAUSE"); return;
+        cout << "ERROR: No se pudo abrir 'Gramatica/compilador.lr'" << endl; system("PAUSE"); return;
     }
     archivoLR >> numReglas;
     infoReglas.resize(numReglas);
@@ -97,7 +97,7 @@ void Sintactico::analiza() {
             else if (token == 4) { // token 4 es "tipo"
                 nodoAST = new Tipo(buffer);
             }
-            // (Aquí puedes añadir 'else if' para ENTERO, REAL, CADENA)
+            // ( 'else if' para ENTERO, REAL, CADENA)
 
             // 2. Crear el Terminal y "pegarle" el nodo
             Terminal* term = new Terminal(token);

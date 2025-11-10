@@ -2,9 +2,9 @@
 
 // --- Constructor (Carga el .inf) ---
 Lexico::Lexico() {
-    std::ifstream archivo("compilador.inf");
+    std::ifstream archivo("Gramatica/compilador.inf");
     if (!archivo.is_open()) {
-        cout << "ERROR: No se pudo abrir 'compilador.inf'" << endl; system("PAUSE"); return;
+        cout << "ERROR: No se pudo abrir 'Gramatica/compilador.inf'" << endl; system("PAUSE"); return;
     }
     std::string palabra;
     int id;
@@ -33,7 +33,7 @@ void Lexico::entrada(string fuente) {
 }
 
 // *******************************************************
-// ---- ¡FUNCIÓN SIGSIMBOLO() ACTUALIZADA! ----
+// ---- ¡FUNCIÓN SIGSIMBOLO()
 // *******************************************************
 int Lexico::sigSimbolo() {
     buffer = ""; // Limpia el buffer al inicio
