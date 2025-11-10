@@ -28,18 +28,21 @@ Esta es la etapa más compleja del proyecto.
 * Implementa un motor de parsing LR(1) completo basado en una pila.
 * Carga la tabla `LR(1)` y las reglas de la gramática desde un archivo `.lr` externo.
 * **Depuración de la Tabla:** Durante la implementación, se detectaron y corrigieron 5 conflictos críticos (reducción-reducción y reducción-desplazamiento) en el archivo `.lr` proporcionado. Estos se solucionaron mediante "parches" lógicos en el motor para forzar las acciones gramaticales correctas y evitar bucles infinitos o *crashes*.
+<img width="500" height="540" alt="Compilador2" src="https://github.com/user-attachments/assets/1794afc4-09d3-4d84-92ef-7b5c6a5a50a2" />
 
 ### Construcción del Árbol de Sintaxis Abstracta (AST)
 El motor construye un Árbol de Sintaxis Abstracta (AST) funcional usando el siguiente método:
 
 1.  **Shift (Desplazar):** Al desplazar un token, se crea el nodo "hoja" correspondiente (ej. `new Tipo("int")` o `new Identificador("a")`) y se enlaza al `Terminal` en la pila.
 2.  **Reduce (Reducir):** Al reducir, la función `crearNodoAST` toma los nodos "hijo" ya creados, los saca de la pila y los ensambla en un nuevo nodo "padre" (ej. `new DefVar(...)`).
+<img width="547" height="540" alt="Compilador3" src="https://github.com/user-attachments/assets/bdf71a67-029b-4192-a3f4-f08dc8513a9b" />
 
 ## 💡 3. Análisis Semántico
 
 * Implementa un recorrido `virtual void validaTipos()` sobre el AST (Patrón Visitor).
 * **Tabla de Símbolos:** Rellena una `TablaSimbolos` (basada en Hash) con las definiciones de variables (`DefVar`), gestionando ámbitos (global/local) y detectando variables redefinidas.
 * **Chequeo de Tipos:** Valida la coherencia de tipos en operaciones (ej. `Suma`, `Mult`) y asignaciones.
+<img width="559" height="606" alt="compilador1" src="https://github.com/user-attachments/assets/ca336fde-d053-42b2-99dc-92eb60d64495" />
 
 ---
 
