@@ -7,6 +7,8 @@
 
 using namespace std;
 
+class Generador;
+
 class Nodo{
 public:
 	string simbolo;
@@ -28,6 +30,11 @@ public:
         tipoDato= 'v';
         if (sig != NULL) sig->validaTipos();
     };
+
+    virtual void generaCodigo(Generador* gen) {
+        // Por defecto, solo sigue al siguiente nodo
+        if (sig) sig->generaCodigo(gen);
+        }
 
 
 };
@@ -93,6 +100,7 @@ public:
 		}
 	}
 
+	void generaCodigo(Generador* gen);
 
 };
 
@@ -126,6 +134,8 @@ public:
         // Continúa la validación con el resto de la lista
         if (sig != NULL) sig->validaTipos();
     }
+
+    void generaCodigo(Generador* gen);
 
 };
 
