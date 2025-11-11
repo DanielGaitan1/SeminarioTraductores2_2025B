@@ -35,6 +35,9 @@ public:
         // Por defecto, solo sigue al siguiente nodo
         if (sig) sig->generaCodigo(gen);
         }
+    virtual void generaDatos(Generador* gen) {
+        if (sig) sig->generaDatos(gen);
+    }
 
 
 };
@@ -136,6 +139,8 @@ public:
     }
 
     void generaCodigo(Generador* gen);
+
+    void generaDatos(Generador* gen);
 
 };
 

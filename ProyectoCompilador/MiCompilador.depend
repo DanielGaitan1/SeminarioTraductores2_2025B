@@ -66,10 +66,11 @@
 1762463493 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\semantico.cpp
 	"semantico.h"
 
-1762326486 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\arbolsintactico.cpp
+1762835418 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\arbolsintactico.cpp
 	"arbolSintactico.h"
+	"generador.h"
 
-1762828364 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\arbolsintactico.h
+1762835332 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\arbolsintactico.h
 	<string>
 	<iostream>
 	"tablaSimbolos.h"
@@ -100,13 +101,14 @@
 	<iostream>
 	<string>
 
-1762462965 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\principal.cpp
+1762827906 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\principal.cpp
 	<cstdlib>
 	<iostream>
 	"pila.h"
 	"lexico.h"
 	"sintactico.h"
 	"semantico.h"
+	"generador.h"
 
 1762795297 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\sintactico.h
 	<vector>
@@ -131,5 +133,13 @@
 
 1762463961 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\tablasimbolos.cpp
 	"tablaSimbolos.h"
+	"arbolSintactico.h"
+
+1762827462 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\generador.cpp
+	"generador.h"
+
+1762827430 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\generador.h
+	<fstream>
+	<string>
 	"arbolSintactico.h"
 

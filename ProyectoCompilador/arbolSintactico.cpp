@@ -17,6 +17,13 @@ void Identificador::generaCodigo(Generador* gen) {
 }
 
 void DefVar::generaCodigo(Generador* gen) {
+    // La definición de una variable no genera CÓDIGO, solo DATOS.
+
+    // Llama al siguiente nodo (la próxima definición)
+    if (sig) sig->generaCodigo(gen);
+}
+
+void DefVar::generaDatos(Generador* gen) {
     // 1. Genera el código para las variables
     Identificador *p = listaVar;
     while (p != NULL) {
@@ -26,5 +33,5 @@ void DefVar::generaCodigo(Generador* gen) {
     }
 
     // 2. Llama al siguiente nodo (la próxima definición)
-    if (sig) sig->generaCodigo(gen);
+    if (sig) sig->generaDatos(gen);
 }

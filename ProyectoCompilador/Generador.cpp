@@ -30,7 +30,7 @@ void Generador::generar(Nodo* arbol) {
     archivo << ".DATA" << endl;
     if (arbol) {
         // (Aquí le diremos al árbol que genere sus datos)
-        // arbol->generaDatos(this);
+         arbol->generaDatos(this);
     }
 
     // 2. Sección de Código
