@@ -32,7 +32,21 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="Generador.cpp" />
+		<Unit filename="Generador.h" />
+		<Unit filename="Lexico.cpp" />
+		<Unit filename="Lexico.h" />
+		<Unit filename="Pila.cpp" />
+		<Unit filename="Pila.h" />
+		<Unit filename="Principal.cpp" />
+		<Unit filename="Semantico.h" />
+		<Unit filename="Sintactico.cpp" />
+		<Unit filename="Sintactico.h" />
+		<Unit filename="arbolSintactico.cpp" />
+		<Unit filename="arbolSintactico.h" />
+		<Unit filename="semantico.cpp" />
+		<Unit filename="tablaSimbolos.cpp" />
+		<Unit filename="tablaSimbolos.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
