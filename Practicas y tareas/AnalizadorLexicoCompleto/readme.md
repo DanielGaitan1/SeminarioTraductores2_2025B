@@ -39,6 +39,8 @@ Se sometió al analizador a una entrada de código que contiene una mezcla de es
 `int main() { float x = 3.14; if (x >= 0) return 1; else return -1; }`
 
 **Salida obtenida:**
+
+
 ![Evidencia de Ejecución](evidencia.png)
 
 ---
