@@ -53,9 +53,7 @@ A continuación se muestra la salida de la consola donde se observa la correcta 
 ## 4. Enlace al Repositorio
 El código fuente completo y este reporte se encuentran alojados en el siguiente repositorio:
 
-[PEGAR TU LINK DE GITHUB AQUÍ]
+https://github.com/DanielGaitan1/SeminarioTraductores2_2025B/tree/main/Practicas%20y%20tareas/MiniGeneradorLexico
 
 ---
 
-## 5. Conclusión
-El analizador léxico cumple con los requisitos funcionales establecidos. Logra distinguir correctamente entre identificadores y números de punto flotante, aplicando las reglas de precedencia y formación de lexemas definidas en la teoría de compiladores.
