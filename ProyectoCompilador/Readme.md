@@ -1,3 +1,8 @@
+![Lenguaje C++](https://img.shields.io/badge/Lenguaje-C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B)
+![IDE CodeBlocks](https://img.shields.io/badge/IDE-CodeBlocks%3A%3AVSC-41AD49?style=for-the-badge)
+![Status Terminado](https://img.shields.io/badge/STATUS-TERMINADO-success?style=for-the-badge)
+![Platform Windows](https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows)
+
 # Proyecto Final: Compilador (Seminario de Traductores 2)
 
 **Materia:** Seminario de Traductores de Lenguaje 2
@@ -44,6 +49,8 @@ Se implementó un recorrido recursivo del AST (similar al patrón *Visitor*) par
 ### 4. Generación de Código (Backend)
 El compilador traduce el AST validado a lenguaje ensamblador.
 
+![Demo del Compilador](img/results_asm.gif)
+
 * **Estrategia de Doble Pasada:**
     1.  **Pasada de Datos (`.DATA`):** Recorre las definiciones (`DefVar`) para reservar memoria (`DW`) en el segmento de datos.
     2.  **Pasada de Código (`.CODE`):** Recorre las sentencias para generar instrucciones mnemónicas (`MOV`, `ADD`, `INT`).
@@ -64,13 +71,33 @@ En lugar de modificar el archivo fuente corrupto manualmente, se implementó una
 
 ---
 
+## 📚 Gramática Soportada (BNF Simplificada)
+
+El compilador procesa un subconjunto del lenguaje C, enfocado en la definición de datos:
+
+```ebnf
+<programa>    ::= <Definiciones>
+<Definicion>  ::= <DefVar> | <DefFunc>
+<DefVar>      ::= tipo identificador <ListaVar> ;
+<ListaVar>    ::= , identificador <ListaVar> | \epsilon
+<Sentencia>   ::= identificador = <Expresion> ;
+<Expresion>   ::= <Termino> | <Expresion> + <Termino>
+
+
 ## 💻 Evidencia de Ejecución
 
 A continuación se demuestra la compilación exitosa de un programa fuente que declara variables y gestiona memoria.
 
+
+![Ejemplo de prueba](img/results.gif)
+
+
+
 **Código Fuente de Entrada:**
+
 ```cpp
 int a;
 float b;
 int c;
 $
+
