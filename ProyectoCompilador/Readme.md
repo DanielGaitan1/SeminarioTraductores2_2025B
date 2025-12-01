@@ -49,7 +49,7 @@ Se implementó un recorrido recursivo del AST (similar al patrón *Visitor*) par
 ### 4. Generación de Código (Backend)
 El compilador traduce el AST validado a lenguaje ensamblador.
 
-![Demo del Compilador](img/results_asm.gif)
+![Demo del Compilador](img/Results_asm.gif)
 
 * **Estrategia de Doble Pasada:**
     1.  **Pasada de Datos (`.DATA`):** Recorre las definiciones (`DefVar`) para reservar memoria (`DW`) en el segmento de datos.
