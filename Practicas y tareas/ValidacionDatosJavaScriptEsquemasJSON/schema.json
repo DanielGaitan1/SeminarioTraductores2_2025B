@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "cliente": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Nombre completo del cliente"
+    },
+    "vehiculo": {
+      "type": "object",
+      "properties": {
+        "marca": { "type": "string" },
+        "modelo": { "type": "string" },
+        "anio": { 
+            "type": "integer", 
+            "minimum": 1950, 
+            "maximum": 2026 
+        }
+      },
+      "required": ["marca", "modelo", "anio"]
+    },
+    "servicio": {
+      "type": "string",
+      "enum": ["Parabrisas", "Medallon", "Aleta", "Lateral", "Quemacocos"],
+      "description": "Tipo de cristal a instalar"
+    },
+    "costo": {
+      "type": "number",
+      "minimum": 100
+    },
+    "contacto": {
+      "type": "object",
+      "properties": {
+        "telefono": { 
+            "type": "string",
+            "pattern": "^[0-9]{10}$" 
+        },
+        "email": { 
+            "type": "string", 
+            "pattern": "^[^@]+@[^@]+\\.[a-zA-Z]{2,}$" }
+      },
+      "required": ["telefono"]
+    }
+  },
+  "required": ["cliente", "vehiculo", "servicio", "costo", "contacto"],
+  "additionalProperties": false
+}

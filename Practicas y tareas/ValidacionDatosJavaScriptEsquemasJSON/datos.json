@@ -1,0 +1,35 @@
+[
+  {
+    "id": "Orden_Correcta_001",
+    "datos": {
+      "cliente": "Daniel Gaitan",
+      "vehiculo": {
+        "marca": "Nissan",
+        "modelo": "Versa",
+        "anio": 2020
+      },
+      "servicio": "Parabrisas",
+      "costo": 2500.50,
+      "contacto": {
+        "telefono": "3312345678",
+        "email": "daniel@autocristales.com"
+      }
+    }
+  },
+  {
+    "id": "Orden_Incorrecta_002",
+    "datos": {
+      "cliente": "Yo",
+      "vehiculo": {
+        "marca": "Ford",
+        "anio": "Dos mil quince"
+      },
+      "servicio": "Cambio de Aceite",
+      "costo": -50,
+      "contacto": {
+        "telefono": "123"
+      },
+      "extra": "Urgen los vidrios"
+    }
+  }
+]
