@@ -91,3 +91,14 @@ float b;
 int c;
 $
 
+## 📚 Gramática Soportada (BNF Simplificada)
+
+El compilador procesa un subconjunto del lenguaje C, enfocado en la definición de datos:
+
+```ebnf
+<programa>    ::= <Definiciones>
+<Definicion>  ::= <DefVar> | <DefFunc>
+<DefVar>      ::= tipo identificador <ListaVar> ;
+<ListaVar>    ::= , identificador <ListaVar> | \epsilon
+<Sentencia>   ::= identificador = <Expresion> ;
+<Expresion>   ::= <Termino> | <Expresion> + <Termino>
