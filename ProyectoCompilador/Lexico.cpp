@@ -32,11 +32,9 @@ void Lexico::entrada(string fuente) {
     this->continua = true;
 }
 
-// *******************************************************
-// ---- ¡FUNCIÓN SIGSIMBOLO()
-// *******************************************************
+// --- ¡FUNCIÓN SIGSIMBOLO() COMPLETA Y CORREGIDA! ---
 int Lexico::sigSimbolo() {
-    buffer = ""; // Limpia el buffer al inicio
+    buffer = ""; // Limpia el buffer
 
     if (!continua) {
         buffer = "$";
@@ -51,32 +49,39 @@ int Lexico::sigSimbolo() {
     // 1. Revisa si es una letra (inicio de palabra)
     if (isalpha(fuente[ind])) {
         while (isalnum(fuente[ind])) {
-            buffer += fuente[ind]; // Guarda la palabra
+            buffer += fuente[ind];
             ind++;
         }
     }
-    // 2. Revisa si es un símbolo (o el fin)
+    // 2. Revisa si es un número
+    else if (isdigit(fuente[ind])) {
+        while (isdigit(fuente[ind])) {
+            buffer += fuente[ind];
+            ind++;
+        }
+    }
+    // 3. Revisa SÍMBOLOS ESPECIALES (¡Aquí agregamos los que faltaban!)
     else if (fuente[ind] == '$') {
-        buffer = "$";
-        continua = false;
-        ind++;
+        buffer = "$"; continua = false; ind++;
     }
-    else if (fuente[ind] == ';') {
-        buffer = ";";
-        ind++;
-    }
-    // (Aquí puedes añadir más 'else if' para '(', ')', '{', '}', etc.)
+    else if (fuente[ind] == ';') { buffer = ";"; ind++; }
+    else if (fuente[ind] == '=') { buffer = "="; ind++; }
+    else if (fuente[ind] == '(') { buffer = "("; ind++; } // <--- NUEVO
+    else if (fuente[ind] == ')') { buffer = ")"; ind++; } // <--- NUEVO
+    else if (fuente[ind] == '{') { buffer = "{"; ind++; } // <--- NUEVO
+    else if (fuente[ind] == '}') { buffer = "}"; ind++; } // <--- NUEVO
+    else if (fuente[ind] == '+') { buffer = "+"; ind++; } // <--- Por si acaso
+    else if (fuente[ind] == '*') { buffer = "*"; ind++; } // <--- Por si acaso
 
-    // 3. Si no es nada de eso, es un error
+    // 4. Si no es nada de eso, es un error
     else {
         cout << "LEXICO: Error, simbolo no reconocido: " << fuente[ind] << endl;
-        continua = false;
-        return -1;
+        continua = false; return -1;
     }
 
     // --- BÚSQUEDA EN EL MAPA ---
 
-    // 4. ¿La palabra es un "tipo" especial?
+    // 5. ¿La palabra es un "tipo" especial?
     if (buffer == "int" || buffer == "float" || buffer == "char") {
         cout << "LEXICO: Envio '" << buffer << "' como 'tipo' (4)" << endl;
         tipo = tablaSimbolos["tipo"];
@@ -84,7 +89,7 @@ int Lexico::sigSimbolo() {
         return tipo;
     }
 
-    // 5. ¿Es otra palabra clave (como "if", ";", "$")?
+    // 6. ¿Es otra palabra clave o símbolo que está en el mapa?
     if (tablaSimbolos.count(buffer)) {
         cout << "LEXICO: Envio '" << buffer << "' (" << tablaSimbolos[buffer] << ")" << endl;
         tipo = tablaSimbolos[buffer];
@@ -92,7 +97,15 @@ int Lexico::sigSimbolo() {
         return tipo;
     }
 
-    // 6. Si no, es un "identificador"
+    // 7. Si es número
+    if (isdigit(buffer[0])) {
+        cout << "LEXICO: Envio '" << buffer << "' como 'entero' (1)" << endl;
+        tipo = tablaSimbolos["entero"];
+        simbolo = buffer[0];
+        return tipo;
+    }
+
+    // 8. Si no, es un "identificador"
     cout << "LEXICO: Envio '" << buffer << "' como 'identificador' (0)" << endl;
     tipo = tablaSimbolos["identificador"];
     simbolo = buffer[0];

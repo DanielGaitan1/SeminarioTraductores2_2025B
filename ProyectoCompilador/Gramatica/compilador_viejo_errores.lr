@@ -1,57 +1,57 @@
 52
-24 1 programa
-25 0 Definiciones
-25 2 Definiciones
-26 1 Definicion
-26 1 Definicion
-27 4 DefVar
-28 0 ListaVar
-28 3 ListaVar
-29 6 DefFunc
-30 0 Parametros
-30 3 Parametros
-31 0 ListaParam
-31 4 ListaParam
-32 3 BloqFunc
-33 0 DefLocales
-33 2 DefLocales
-34 1 DefLocal
-34 1 DefLocal
-35 0 Sentencias
-35 2 Sentencias
-36 4 Sentencia
-36 6 Sentencia
-36 5 Sentencia
-36 3 Sentencia
-36 2 Sentencia
-37 0 Otro
-37 2 Otro
-38 3 Bloque
-39 0 ValorRegresa
-39 1 ValorRegresa
-40 0 Argumentos
-40 2 Argumentos
-41 0 ListaArgumentos
-41 3 ListaArgumentos
-42 1 Termino
-42 1 Termino
-42 1 Termino
-42 1 Termino
-42 1 Termino
-43 4 LlamadaFunc
-44 1 SentenciaBloque
-44 1 SentenciaBloque
-45 3 Expresion
-45 2 Expresion
-45 2 Expresion
-45 3 Expresion
-45 3 Expresion
-45 3 Expresion
-45 3 Expresion
-45 3 Expresion
-45 3 Expresion
-45 1 Expresion
-95 46
+24	1	programa
+25	0	Definiciones
+25	2	Definiciones
+26	1	Definicion
+26	1	Definicion
+27	4	DefVar
+28	0	ListaVar
+28	3	ListaVar
+29	6	DefFunc
+30	0	Parametros
+30	3	Parametros
+31	0	ListaParam
+31	4	ListaParam
+32	3	BloqFunc
+33	0	DefLocales
+33	2	DefLocales
+34	1	DefLocal
+34	1	DefLocal
+35	0	Sentencias
+35	2	Sentencias
+36	4	Sentencia
+36	6	Sentencia
+36	5	Sentencia
+36	3	Sentencia
+36	2	Sentencia
+37	0	Otro
+37	2	Otro
+38	3	Bloque
+39	0	ValorRegresa
+39	1	ValorRegresa
+40	0	Argumentos
+40	2	Argumentos
+41	0	ListaArgumentos
+41	3	ListaArgumentos
+42	1	Termino
+42	1	Termino
+42	1	Termino
+42	1	Termino
+42	1	Termino
+43	4	LlamadaFunc
+44	1	SentenciaBloque
+44	1	SentenciaBloque
+45	3	Expresion
+45	2	Expresion
+45	2	Expresion
+45	3	Expresion
+45	3	Expresion
+45	3	Expresion
+45	3	Expresion
+45	3	Expresion
+45	3	Expresion
+45	1	Expresion
+95	46
 0	0	0	0	5	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-3	1	2	3	4	0	6	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-2	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -63,19 +63,19 @@
 0	0	0	0	0	0	0	0	0	0	0	0	-8	10	11	0	0	0	0	0	0	0	0	0	0	0	0	0	9	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 0	0	0	0	0	0	0	0	0	0	0	0	12	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 13	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	0	0	0	15	0	0	0	0	0	0	0	0	0	0	-11	0	0	0	0	0	0	0	0	0	0	0	0	0	0	12	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	15	0	0	0	0	0	0	0	0	0	0	-11	0	0	0	0	0	0	0	0	0	0	0	0	0	0	14	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 -7	0	0	0	-7	0	0	0	0	0	0	0	0	0	0	0	0	-7	0	-7	-7	-7	0	-7	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 0	0	0	0	0	0	0	0	0	0	0	0	-8	10	0	0	0	0	0	0	0	0	0	0	0	0	0	0	16	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	17	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-18	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-10	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+18	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 0	0	0	0	0	0	0	0	0	0	0	0	-9	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	20	23	0	0	0	0	0	0	0	0	0	0	0	0	0	0	19	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	20	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	19	0	0	0	0	0	0	0	0	0	0	0	0	0
 0	0	0	0	0	0	0	0	0	0	0	0	0	22	0	-13	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	21	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 0	0	0	0	-10	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-10	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 27	0	0	0	5	0	0	0	0	0	0	0	0	0	0	0	0	-16	0	28	29	30	0	0	0	0	0	25	0	0	0	0	0	23	24	0	26	0	0	0	0	0	0	31	0	0
 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-12	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 0	0	0	0	32	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	33	0	0	0	0	0	-15	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	33	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 27	0	0	0	5	0	0	0	0	0	0	0	0	0	0	0	0	-16	0	28	29	30	0	0	0	0	0	25	0	0	0	0	0	34	24	0	26	0	0	0	0	0	0	31	0	0
 -18	0	0	0	-18	0	0	0	0	0	0	0	0	0	0	0	0	-18	0	-18	-18	-18	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 -19	0	0	0	-19	0	0	0	0	0	0	0	0	0	0	0	0	-19	0	-19	-19	-19	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0

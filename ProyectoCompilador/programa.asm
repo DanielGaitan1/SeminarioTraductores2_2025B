@@ -1,11 +1,10 @@
-MODEL SMALL
-.STACK 100h
-.DATA
-a DW 0
-.CODE
-START:
-    MOV AX, @DATA
-    MOV DS, AX
+org 100h
+.data
+    a DW 0
+    b DW 0
+    c DW 0
+.code
+start:
     MOV AX, 4C00h
     INT 21h
-END START
+end start

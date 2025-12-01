@@ -15,7 +15,7 @@ string Nodo::ambito= "";
 int main(int argc, char *argv[]){
 
     Sintactico sintactico;
-    sintactico.lexico.entrada("int a ; $");
+    sintactico.lexico.entrada("int a; float b; int c; $");
     sintactico.analiza();
 
     if (sintactico.aceptacion) { // Solo si la sintaxis fue correcta

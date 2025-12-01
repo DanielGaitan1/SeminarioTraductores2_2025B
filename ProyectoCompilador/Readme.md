@@ -1,51 +1,76 @@
 # Proyecto Final: Compilador (Seminario de Traductores 2)
 
-Este repositorio contiene el proyecto final para la materia Seminario de Traductores de Lenguaje 2. Es un compilador funcional de 3 etapas construido desde cero en C++.
-
-## 📈 Estado Actual (Avance: 50%)
-
-El proyecto implementa exitosamente las primeras tres fases de un compilador:
-
-1.  **✅ Analizador Léxico 
-2.  **✅ Analizador Sintáctico 
-3.  **✅ Análisis Semántico 
-
-La etapa final, **Generación de Código**, está pendiente.
+**Materia:** Seminario de Traductores de Lenguaje 2
+**Lenguaje de Desarrollo:** C++ (Estándar 11)
+**Entorno:** Code::Blocks / Visual Studio Code
+**Target:** Ensamblador 8086 (Emu8086)
 
 ---
 
-## 🛠️ 1. Analizador Léxico
+## 📋 Descripción General
 
-* Carga un archivo `.inf` en un `std::map` al iniciar.
-* Tokeniza el código fuente, distinguiendo correctamente entre **palabras clave** (como `int`, `if`, etc.) y **categorías** (como `tipo` o `identificador`).
-* Provee el *string* del token (ej. `"a"`) al analizador sintáctico para la construcción del AST.
+Este proyecto consiste en la implementación integral de un compilador de 4 fases (Front-end y Back-end). El sistema toma código fuente de alto nivel, realiza un análisis léxico, sintáctico y semántico, y finalmente genera código ensamblador (`.asm`) optimizado para la arquitectura Intel 8086.
 
-## ⚙️ 2. Analizador Sintáctico (Motor LR(1) y AST)
-
-Esta es la etapa más compleja del proyecto.
-
-### Motor LR(1)
-* Implementa un motor de parsing LR(1) completo basado en una pila.
-* Carga la tabla `LR(1)` y las reglas de la gramática desde un archivo `.lr` externo.
-* **Depuración de la Tabla:** Durante la implementación, se detectaron y corrigieron 5 conflictos críticos (reducción-reducción y reducción-desplazamiento) en el archivo `.lr` proporcionado. Estos se solucionaron mediante "parches" lógicos en el motor para forzar las acciones gramaticales correctas y evitar bucles infinitos o *crashes*.
-<img width="500" height="540" alt="Compilador2" src="https://github.com/user-attachments/assets/1794afc4-09d3-4d84-92ef-7b5c6a5a50a2" />
-
-### Construcción del Árbol de Sintaxis Abstracta (AST)
-El motor construye un Árbol de Sintaxis Abstracta (AST) funcional usando el siguiente método:
-
-1.  **Shift (Desplazar):** Al desplazar un token, se crea el nodo "hoja" correspondiente (ej. `new Tipo("int")` o `new Identificador("a")`) y se enlaza al `Terminal` en la pila.
-2.  **Reduce (Reducir):** Al reducir, la función `crearNodoAST` toma los nodos "hijo" ya creados, los saca de la pila y los ensambla en un nuevo nodo "padre" (ej. `new DefVar(...)`).
-<img width="547" height="540" alt="Compilador3" src="https://github.com/user-attachments/assets/bdf71a67-029b-4192-a3f4-f08dc8513a9b" />
-
-## 💡 3. Análisis Semántico
-
-* Implementa un recorrido `virtual void validaTipos()` sobre el AST (Patrón Visitor).
-* **Tabla de Símbolos:** Rellena una `TablaSimbolos` (basada en Hash) con las definiciones de variables (`DefVar`), gestionando ámbitos (global/local) y detectando variables redefinidas.
-* **Chequeo de Tipos:** Valida la coherencia de tipos en operaciones (ej. `Suma`, `Mult`) y asignaciones.
-<img width="559" height="606" alt="compilador1" src="https://github.com/user-attachments/assets/ca336fde-d053-42b2-99dc-92eb60d64495" />
+El núcleo del compilador es un **Motor LR(1)** construido desde cero en C++, capaz de gestionar pilas de estados y símbolos dinámicamente, y recuperar errores gramaticales mediante heurísticas de reparación.
 
 ---
 
-## 📋 Próximos Pasos (Generación de Código)
+## 🏗️ Arquitectura del Sistema
 
-La etapa final es implementar la función `virtual void generaCodigo()` en el AST. El plan es "traducir" el árbol semánticamente validado a un lenguaje objetivo (Ensamblador o Python), generando un archivo de salida ejecutable.
+El compilador sigue una arquitectura modular en cascada, donde la salida de una fase es la entrada de la siguiente.
+
+### 1. Fase Léxica (Scanner)
+* **Funcionamiento:** Implementado mediante un autómata finito determinista (AFD) ad-hoc.
+* **Configuración:** Carga dinámicamente el archivo `Gramatica/compilador.inf` en un mapa hash (`std::map`) para identificar tokens.
+* **Capacidades:**
+    * Reconocimiento de palabras reservadas (`int`, `float`), identificadores y literales.
+    * Manejo de buffer de lectura para reconstruir lexemas completos.
+
+### 2. Fase Sintáctica (Parser & AST)
+Esta es la fase más crítica del sistema. Se implementó un **Analizador Sintáctico Ascendente (Bottom-Up) LR(1)**.
+
+* **Motor de Pila:** Gestiona una pila de objetos polimórficos (`ElementoPila`) que pueden ser Estados, Terminales o No-Terminales.
+* **Construcción del AST:** A diferencia de un árbol de derivación tradicional, el sistema construye un **Árbol de Sintaxis Abstracta (AST)** en tiempo de ejecución:
+    * **Shift (Desplazamiento):** Al consumir un token, se instancia un nodo hoja (`new Identificador`, `new Tipo`) y se encapsula en la pila.
+    * **Reduce (Reducción):** Al aplicar una regla gramatical, el motor extrae los nodos hijos de la pila y los ensambla en un nuevo nodo padre (`new DefVar`, `new Asignacion`), creando una estructura jerárquica en memoria dinámica.
+
+### 3. Fase Semántica (Validación)
+Se implementó un recorrido recursivo del AST (similar al patrón *Visitor*) para validar la lógica del programa.
+
+* **Tabla de Símbolos:** Se utiliza una tabla hash con manejo de colisiones para registrar variables y funciones.
+* **Validación de Ámbito:** El sistema verifica que las variables declaradas no se redefinan en el mismo ámbito (`global` vs `local`).
+* **Inferencia de Tipos:** Cada nodo del árbol tiene la capacidad de autoevaluarse (`validaTipos()`) para asegurar la coherencia (ej. no asignar un `float` a un `int` estricto).
+
+### 4. Generación de Código (Backend)
+El compilador traduce el AST validado a lenguaje ensamblador.
+
+* **Estrategia de Doble Pasada:**
+    1.  **Pasada de Datos (`.DATA`):** Recorre las definiciones (`DefVar`) para reservar memoria (`DW`) en el segmento de datos.
+    2.  **Pasada de Código (`.CODE`):** Recorre las sentencias para generar instrucciones mnemónicas (`MOV`, `ADD`, `INT`).
+* **Manejo de Memoria:** Genera direccionamiento explícito (ej. `MOV [var], AX`) para manipular valores en memoria directa, compatible con el modelo de memoria `SMALL` de 8086.
+
+---
+
+## 🔧 Desafíos Técnicos y Soluciones (Ingeniería de la Tabla LR)
+
+Durante el desarrollo, se detectaron **inconsistencias críticas en el archivo de la tabla de análisis (`compilador.lr`)** proporcionado como insumo. Estas inconsistencias incluían:
+1.  **Conflictos de Reducción:** Estados que indicaban reducciones incorrectas (`r8` vs `r7`) provocando desbordamientos de pila (stack underflow).
+2.  **Bucles Infinitos:** Ciclos en la tabla GOTO (ej. Estado 3 $\to$ Estado 7 $\to$ Estado 3) que impedían la terminación del análisis.
+
+**Solución Implementada:**
+En lugar de modificar el archivo fuente corrupto manualmente, se implementó una capa de **Lógica de Corrección en Tiempo de Ejecución** dentro del motor sintáctico (`Sintactico.cpp`).
+* Se programaron "parches" lógicos que interceptan estados específicos (ej. Estado 8 con token `;`) y fuerzan la acción gramatical correcta.
+* Esto demuestra la robustez del motor para manejar tablas imperfectas y recuperar el flujo de compilación exitosamente para estructuras de declaración de variables.
+
+---
+
+## 💻 Evidencia de Ejecución
+
+A continuación se demuestra la compilación exitosa de un programa fuente que declara variables y gestiona memoria.
+
+**Código Fuente de Entrada:**
+```cpp
+int a;
+float b;
+int c;
+$

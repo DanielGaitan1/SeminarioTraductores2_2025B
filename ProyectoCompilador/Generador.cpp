@@ -10,43 +10,39 @@ Generador::~Generador() {
     }
 }
 
-// Escribe en la sección de código
 void Generador::emit(string codigo) {
     archivo << "    " << codigo << endl;
 }
 
-// Escribe en la sección de datos
 void Generador::emitData(string codigo) {
-    archivo << codigo << endl;
+    archivo << "    "<<codigo << endl;
 }
 
-// Función principal que inicia todo
 void Generador::generar(Nodo* arbol) {
-    // Encabezado estándar de emu8086
-    archivo << "MODEL SMALL" << endl;
-    archivo << ".STACK 100h" << endl;
+    // 1. Encabezado para archivos .COM
+    archivo << "org 100h" << endl;
 
-    // 1. Sección de Datos
-    archivo << ".DATA" << endl;
+    // 2. Sección de Datos
+    archivo << ".data" << endl;
     if (arbol) {
-        // (Aquí le diremos al árbol que genere sus datos)
-         arbol->generaDatos(this);
+        arbol->generaDatos(this);
     }
 
-    // 2. Sección de Código
-    archivo << ".CODE" << endl;
-    archivo << "START:" << endl;
-    archivo << "    MOV AX, @DATA" << endl; // Inicializar DS
-    archivo << "    MOV DS, AX" << endl;
+    // 3. Sección de Código
+    archivo << ".code" << endl;
+    archivo << "start:" << endl;
+
+    // NOTA: En formato .COM NO inicializamos DS (@DATA).
+    // El código va directo.
 
     if (arbol) {
-        arbol->generaCodigo(this); // ¡Llama al árbol!
+        arbol->generaCodigo(this);
     }
 
     // Fin del programa
-    archivo << "    MOV AX, 4C00h" << endl; // Salir
+    archivo << "    MOV AX, 4C00h" << endl; // Salir al sistema
     archivo << "    INT 21h" << endl;
-    archivo << "END START" << endl;
+    archivo << "end start" << endl;
 
     cout << endl << "------ GENERACION DE CODIGO ------" << endl;
     cout << "¡Archivo 'programa.asm' generado con exito!" << endl;

@@ -66,11 +66,11 @@
 1762463493 source:c:\users\flame\documents\github\seminariotraductores2_2025b\modulo 6\micompilador\semantico.cpp
 	"semantico.h"
 
-1762835418 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\arbolsintactico.cpp
+1764463730 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\arbolsintactico.cpp
 	"arbolSintactico.h"
 	"generador.h"
 
-1762835332 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\arbolsintactico.h
+1764461017 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\arbolsintactico.h
 	<string>
 	<iostream>
 	"tablaSimbolos.h"
@@ -80,7 +80,7 @@
 	<iostream>
 	<string>
 
-1762798765 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\lexico.cpp
+1764461588 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\lexico.cpp
 	"lexico.h"
 
 1762463906 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\lexico.h
@@ -101,7 +101,7 @@
 	<iostream>
 	<string>
 
-1762827906 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\principal.cpp
+1764568017 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\principal.cpp
 	<cstdlib>
 	<iostream>
 	"pila.h"
@@ -128,14 +128,14 @@
 1762463493 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\semantico.cpp
 	"semantico.h"
 
-1762798743 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\sintactico.cpp
+1764568312 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\sintactico.cpp
 	"sintactico.h"
 
 1762463961 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\tablasimbolos.cpp
 	"tablaSimbolos.h"
 	"arbolSintactico.h"
 
-1762835859 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\generador.cpp
+1764562995 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\generador.cpp
 	"generador.h"
 
 1762827430 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\generador.h

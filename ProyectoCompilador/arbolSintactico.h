@@ -251,6 +251,7 @@ public:
 
         if (sig != NULL) sig->validaTipos();
 	}
+	void generaCodigo(Generador* gen);
 
 
 };
@@ -295,6 +296,7 @@ public:
         }
 		if (sig != NULL) sig->validaTipos();
 	}
+	void generaCodigo(Generador* gen);
 
 
 };
@@ -336,20 +338,24 @@ public:
 
 };
 
+
 class Entero: public Expresion{
 public:
-	Entero(string simbolo){
-		this->simbolo= simbolo;
-		this->sig=NULL;
-	}
+    Entero(string simbolo){
+        this->simbolo= simbolo;
+        this->sig=NULL;
+    }
 
-	void muestra(){
-		muestraSangria();
-		cout << "<Entero> " << simbolo << endl;
-	}
-	void validaTipos(){ tipoDato = 'i'; }
+    void muestra(){
+        muestraSangria();
+        cout << "<Entero> " << simbolo << endl;
+    }
+
+    void validaTipos(){ tipoDato = 'i'; }
+
+    // Solo la promesa (declaración), sin el código
+    void generaCodigo(Generador* gen);
 };
-
 class Real: public Expresion{
 public:
 	Real(string simbolo){
@@ -452,6 +458,7 @@ public:
 	string guardaArbol(){
 		return "new Mult(" + simbolo + "," + izq->guardaArbol() + ", " +  der->guardaArbol() + ") ";
 	}
+	void generaCodigo(Generador* gen);
 };
 
 class Suma: public Expresion{
@@ -497,6 +504,7 @@ public:
 	string guardaArbol(){
 		return "new Suma(" + simbolo + "," + izq->guardaArbol() + ", " +  der->guardaArbol() + ") ";
 	}
+	void generaCodigo(Generador* gen);
 
 };
 
