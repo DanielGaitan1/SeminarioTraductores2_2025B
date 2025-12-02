@@ -7,6 +7,11 @@
 
 ---
 
+Nota sobre el Código Fuente: La implementación completa del analizador sintáctico y las estructuras del árbol se encuentran centralizadas en el directorio principal: 
+
+[Ir a ProyectoCompilador](https://github.com/DanielGaitan1/SeminarioTraductores2_2025B/tree/main/ProyectoCompilador)
+
+---
 ## 1. Descripción de la Actividad
 El objetivo de esta etapa final es validar la capacidad del compilador para construir el **Árbol de Sintaxis Abstracta (AST)**.
 Se busca demostrar que el analizador sintáctico no solo valida la gramática, sino que construye en memoria dinámica los nodos correspondientes a estructuras complejas como:
