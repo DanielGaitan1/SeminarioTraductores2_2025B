@@ -70,6 +70,7 @@ int Lexico::sigSimbolo() {
     else if (fuente[ind] == ')') { buffer = ")"; ind++; } // <--- NUEVO
     else if (fuente[ind] == '{') { buffer = "{"; ind++; } // <--- NUEVO
     else if (fuente[ind] == '}') { buffer = "}"; ind++; } // <--- NUEVO
+    else if (fuente[ind] == ',') { buffer = ","; ind++; }
     else if (fuente[ind] == '+') { buffer = "+"; ind++; } // <--- Por si acaso
     else if (fuente[ind] == '*') { buffer = "*"; ind++; } // <--- Por si acaso
 

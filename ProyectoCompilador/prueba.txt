@@ -1,1 +1,2 @@
-int ;
+int a;
+float b;

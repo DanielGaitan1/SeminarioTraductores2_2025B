@@ -80,7 +80,7 @@
 	<iostream>
 	<string>
 
-1764461588 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\lexico.cpp
+1764643370 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\lexico.cpp
 	"lexico.h"
 
 1762463906 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\lexico.h
@@ -101,7 +101,7 @@
 	<iostream>
 	<string>
 
-1764641220 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\principal.cpp
+1764644744 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\principal.cpp
 	<cstdlib>
 	<iostream>
 	"pila.h"
