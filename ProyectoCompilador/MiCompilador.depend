@@ -101,7 +101,7 @@
 	<iostream>
 	<string>
 
-1764572154 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\principal.cpp
+1764641220 source:c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\principal.cpp
 	<cstdlib>
 	<iostream>
 	"pila.h"
@@ -109,6 +109,8 @@
 	"sintactico.h"
 	"semantico.h"
 	"generador.h"
+	<fstream>
+	<sstream>
 
 1762795297 c:\users\flame\documents\github\seminariotraductores2_2025b\proyectocompilador\sintactico.h
 	<vector>
